@@ -1,0 +1,30 @@
+{
+  "id": "3705137",
+  "name": "绵阳餐饮",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "1239866",
+      "name": "确认",
+      "font_class": "queren",
+      "unicode": "e619",
+      "unicode_decimal": 58905
+    },
+    {
+      "icon_id": "6999239",
+      "name": "错误",
+      "font_class": "cuowu",
+      "unicode": "e630",
+      "unicode_decimal": 58928
+    },
+    {
+      "icon_id": "9826664",
+      "name": "警告",
+      "font_class": "jinggao",
+      "unicode": "e616",
+      "unicode_decimal": 58902
+    }
+  ]
+}
