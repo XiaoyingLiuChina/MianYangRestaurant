@@ -25,14 +25,12 @@ export default {
         ],
         [5972, 1483, 1995, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       ],
-      his_a: "2016年",
-      his_b: "2019年",
       histoData1: {},
-      histoData2: {},
-      his_ab: ["2016年", "2019年"],
+      his_ab: ["2016年", "2019年"],//需要展示的两年
     };
   },
   getters: {
+    // 将数据改造
     getList(state) {
       state.histoData.forEach((item, index) => {
         state.histoData1[`${index + 2013}年`] = [];
@@ -40,32 +38,15 @@ export default {
       });
       return state.histoData1;
     },
-    // getIndex(state, getters) {
-    //   Object.keys(getters.getList).forEach((key, index) => {
-    //     if (key == state.his_a) {
-    //       state.histoData2[`${index + 2013}年`] =
-    //         state.histoData1[`${index + 2013}年`];
-    //     }
-    //     if (key == state.his_b) {
-    //       state.histoData2[`${index + 2013}年`] =
-    //         state.histoData1[`${index + 2013}年`];
-    //     }
-    //   });
-    //   return state.histoData2;
-    // },
   },
   mutations: {
-    // upDate(state, new_year) {
-    //   state.his_a = new_year;
-    // },
+    // 更新数据
     upDate1(state, new_data) {
       state.his_ab = new_data;
     },
   },
   actions: {
-    // upDate(context, args) {
-    //   context.commit("upDate", args);
-    // },
+    // 更新数据
     upDate1(context, args) {
       context.commit("upDate1", args);
     },

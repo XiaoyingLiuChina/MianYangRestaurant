@@ -2,15 +2,13 @@ import { createApp } from "vue";
 import App from "./App.vue";
 import BaiduMap from "vue-baidu-map-3x";
 import * as echarts from "echarts";
-import "./assets/iconfont/iconfont.css";
-// import * as d3 from "d3"
-// import "echarts-wordcloud"
-import "../node_modules/echarts/extension/bmap/bmap";
 import store from "./store";
-import ui from "./components/library"
+import ui from "./components/library";
+import "./assets/iconfont/iconfont.css";
+import "../node_modules/echarts/extension/bmap/bmap";
 const app = createApp(App);
 app.use(store);
-app.use(ui)
+app.use(ui);
 app.use(BaiduMap, {
   // ak 是在百度地图开发者平台申请的密钥 详见 http://lbsyun.baidu.com/apiconsole/key */
   ak: "YWezsgRph4p5UU30RsrI20qXqDyPbZMO",

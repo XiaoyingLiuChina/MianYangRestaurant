@@ -4,7 +4,6 @@
 
 <script>
 export default {
-  // eslint-disable-next-line vue/multi-word-component-names
   name: "MyRose",
   data() {
     this.rose = null;
@@ -64,25 +63,11 @@ export default {
       },
     };
   },
-  //   setup() {
-  //     const store = useStore()
-  //     return {store}
-  //   },
   mounted() {
     // 初始化echarts
     this.initRose();
     // 绑定数据
     this.setData();
-    // window.addEventListener("resize", () => {
-    //   // 第六步，执行echarts自带的resize方法，即可做到让echarts图表自适应
-    //   this.rose.resize();
-    //   // 如果有多个echarts，就在这里执行多个echarts实例的resize方法,不过一般要做组件化开发，即一个.vue文件只会放置一个echarts实例
-    //   /*
-    //     this.myChart2.resize();
-    //     this.myChart3.resize();
-    //     ......
-    //     */
-    // });
   },
   methods: {
     /**
@@ -109,9 +94,7 @@ export default {
 </script>
 <style scoped>
 .rose {
-  /* width: 600px; */
   width: 30vw;
   height: 60vh;
-  /* background: red; */
 }
 </style>

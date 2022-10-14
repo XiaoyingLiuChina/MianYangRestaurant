@@ -27,6 +27,7 @@ export default {
     }),
   },
   watch: {
+    // 监听店铺id
     point: {
       handler(val, olVal) {
         console.log("我变化了", val, olVal);
@@ -35,12 +36,8 @@ export default {
       deep: true,
     },
   },
-  //   setup(props) {
-  //     const echarts  = inject('echarts ')
-  //     return {echarts}
-
-  //   },
   mounted() {
+    // 默认渲染种类词云
     this.initCiyun("种类");
   },
   methods: {

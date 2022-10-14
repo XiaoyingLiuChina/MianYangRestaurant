@@ -6,15 +6,9 @@
 import { mapGetters, mapState, useStore } from "vuex";
 export default {
   name: "MyHis",
-  setup(props) {
-    // const store = useStore();
-    // const his_a = store.state.histogram.his_a;
-    // return { his_a };
-  },
   data() {
     // 放外面解决提示框不显示的问题
     this.histogram = null;
-
     return {
       option: null,
     };
@@ -132,7 +126,6 @@ export default {
           },
         ],
       };
-     console.log(  this.$store.getters["histogram/getList"]['2016年']);
       this.histogram.setOption(this.option, true);
     },
   },

@@ -13,22 +13,22 @@ export default {
   data() {
     this.map = null;
     return {
-      mapData: null,
-      option: null,
+      mapData: null, // 地图数据
+      option: null, // 地图配置项
       option1: this.$store.state.map.option1, // 单一类别时用的的配置项
 
-      isArea: false,
-      areaData: [],
+      isArea: false, // 是否处于选择区域状态
+      areaData: [], // 用于存储平行坐标数据
 
-      isStart: false,
-      //   isEnd:true,
+      isStart: false, // 是否播放
 
-      timer: null,
-      time: 2013,
+      timer: null, // 计时器
+      time: 2013, // 开始年份
     };
   },
   provide() {
     return {
+      // 向后代组件传递该组件实例
       test: this,
     };
   },
@@ -38,6 +38,7 @@ export default {
   },
 
   methods: {
+    // 获取一个区域的数据（店铺id）
     getThisAreaData(point) {
       let temp = [];
       this.mapData["features"].forEach((item, index) => {
@@ -52,6 +53,7 @@ export default {
       });
       return temp;
     },
+    // 选择区域触发后的操作
     getIsArea(res) {
       this.isArea = res;
       if (this.isArea) {
@@ -76,24 +78,25 @@ export default {
           }
         });
       } else {
+        //退出区域选择时，还原lick
         this.map.off("click");
-          this.map.on("click", (point) => {
-        let temp = this.getInfo(point, "poiId");
-        this.$store.dispatch("ciyun/drawChart", temp);
-      });
+        this.map.on("click", (point) => {
+          let temp = this.getInfo(point, "poiId");
+          this.$store.dispatch("ciyun/drawChart", temp);
+        });
       }
     },
-
+    // 初始化地图
     initMap() {
       d3.json("map.json").then((data) => {
         this.mapData = data;
         this.drawMap();
         this.initOption();
         this.initEvent();
-
         this.map.setOption(this.option, true);
       });
     },
+    // 初始化配置项
     initOption() {
       this.option = {
         title: {
@@ -177,22 +180,26 @@ export default {
         ],
       };
     },
+    // 获取地图dom
     drawMap() {
       const doc = document.getElementById("map");
       this.map = this.$echarts.init(doc);
       this.map.clear();
     },
+    // 初始化点击事件
     initEvent() {
+      //点击更新词云
       this.map.on("click", (point) => {
         let temp = this.getInfo(point, "poiId");
         this.$store.dispatch("ciyun/drawChart", temp);
       });
-      let why=0
+      let why = 0;
+      //双击查看类别大地图
       this.map.on("dblclick", (point) => {
         // 修改option
         const key = this.getInfo(point, "leibie");
-        why=why+1
-        console.log(why,this.option1);
+        why = why + 1;
+        console.log(why, this.option1);
 
         if (this.option1 == null) {
           this.option1 = {
@@ -242,13 +249,14 @@ export default {
         } else {
           this.option1 = null;
           this.$message({ type: "success", text: "返回评分地图" });
-         
+
           this.map.clear();
-           this.drawMap();
+          this.drawMap();
           this.map.setOption(this.option, true);
         }
       });
     },
+    // 获取与该点相同类别的店铺
     getChooseOneKind(key) {
       let temp = [];
       this.mapData["features"].forEach((item) => {
@@ -258,7 +266,7 @@ export default {
       });
       return temp;
     },
-
+    // 获取评分分组数据，可选参数年份
     getMapData(min, max, year = 2022) {
       const temp = [];
       this.mapData["features"].forEach((item, index) => {
@@ -287,6 +295,7 @@ export default {
     },
   },
   watch: {
+    // 监听是否播放
     isStart: {
       handler(val, olVal) {
         console.log("我变化了", val, olVal);
@@ -342,6 +351,6 @@ export default {
 .map {
   position: relative;
   width: 40vw;
-  height: 50vh;
+  height: 55vh;
 }
 </style>

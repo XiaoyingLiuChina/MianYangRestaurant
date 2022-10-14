@@ -3,7 +3,7 @@ export default {
   namespaced: true,
   state() {
     return {
-      option1: null,
+      option1: null,// 类别地图配置项
     };
   },
   getters: {},

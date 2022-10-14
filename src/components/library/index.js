@@ -7,6 +7,7 @@ export default {
   install(app) {
     app.component(AppButton.name, AppButton);
     app.component(AppMessage.name, AppMessage);
+    // 指令
     app.config.globalProperties.$message = Message;
   },
 };

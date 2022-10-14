@@ -2,6 +2,7 @@ export default {
   namespaced: true,
   state() {
     return {
+      // 默认的三个区域
       areaData: [
         [
           1409876198, 195075324, 521519433, 606922393, 194709752, 160799990,
@@ -52,8 +53,8 @@ export default {
 
   mutations: {
     updateAreaData(state, new_area) {
-          state.areaData = new_area;
-          console.log(state.areaData);
+      state.areaData = new_area;
+      console.log(state.areaData);
     },
   },
   actions: {

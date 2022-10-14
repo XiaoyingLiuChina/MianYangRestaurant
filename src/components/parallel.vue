@@ -10,29 +10,20 @@ export default {
   data() {
     this.parallel = null;
     return {
-      paraData: null,
+      paraData: null, // 平行坐标所有的数据
       option: null,
       schema: this.$store.state.parallel.schema,
     };
   },
   mounted() {
     this.initPara();
-    // this.setData()
   },
   computed: {
     ...mapState("parallel", {
-      areaData: "areaData",
+      areaData: "areaData", // 这是选中的三个区域的数据
     }),
   },
-  watch: {
-    areaData: {
-      handler(val, olVal) {
-        console.log("我变化了", val, olVal);
-        this.drawPara();
-      },
-      deep: true,
-    },
-  },
+
   methods: {
     initPara() {
       d3.csv("parallel.csv").then((data) => {
@@ -40,6 +31,7 @@ export default {
         this.drawPara();
       });
     },
+    // 绘制平行坐标图
     drawPara() {
       const doc = document.getElementById("parallel");
       this.parallel = this.$echarts.init(doc);
@@ -79,13 +71,13 @@ export default {
           {
             dim: 1,
             name: this.schema[1].text,
-            max:5
+            max: 5,
           },
 
           {
             dim: 2,
             name: this.schema[2].text,
-            max:200
+            max: 200,
           },
           {
             dim: 3,
@@ -138,7 +130,7 @@ export default {
             emphasis: {
               lineStyle: {
                 opacity: 1,
-                color:'red'
+                color: "red",
               },
             },
             data: this.getSeries(0, "①"),
@@ -150,7 +142,7 @@ export default {
             emphasis: {
               lineStyle: {
                 opacity: 1,
-                color:'red'
+                color: "red",
               },
             },
             data: this.getSeries(1, "②"),
@@ -162,7 +154,7 @@ export default {
             emphasis: {
               lineStyle: {
                 opacity: 1,
-                color:'red'
+                color: "red",
               },
             },
             data: this.getSeries(2, "③"),
@@ -171,6 +163,7 @@ export default {
       };
       this.parallel.setOption(this.option, true);
     },
+    // 获取平行坐标一个系列的数据（即一个区域）
     getSeries(index, title) {
       let res = [];
       this.areaData[index].forEach((id) => {
@@ -190,6 +183,16 @@ export default {
         }
       });
       return res;
+    },
+  },
+  watch: {
+    // 监听区域数据是否发生变化
+    areaData: {
+      handler(val, olVal) {
+        console.log("我变化了", val, olVal);
+        this.drawPara();
+      },
+      deep: true,
     },
   },
 };

@@ -16,11 +16,6 @@ export default {
     return {};
   },
   inject: ["test"],
-// inject:{
-//     isStart:{
-//         default:()=>{}
-//     }
-// },
   props: {
     isArea: {
       type: Boolean,
@@ -43,8 +38,4 @@ export default {
   },
 };
 </script>
-<style scoped>
-.butt {
-  /* z-index: 999; */
-}
-</style>
+<style scoped></style>
